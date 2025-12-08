@@ -1,0 +1,16 @@
+apiVersion: v1
+  kind Service
+metadata:
+  name: project-neon-service
+  namespace: dev
+  labels:
+    app: project-neon-service
+spec:
+  selector:
+    app: project-neon-service
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  type: ClusterIP
