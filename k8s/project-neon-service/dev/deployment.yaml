@@ -18,7 +18,7 @@ spec:
       serviceAccountName: project-neon-service-sa
       containers:
         - name: project-neon-service
-          image: IMAGE_PLACEHOLDER   # sẽ set bằng Cloud Build
+          image: asia-southeast1-docker.pkg.dev/project-neon-480615/project-neon-service-repo/project-neon-service:latest
           ports:
             - containerPort: 8080
           resources:
