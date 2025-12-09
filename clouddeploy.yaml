@@ -1,0 +1,40 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: project-neon-service-pipeline
+description: "Project Neon service pipeline: dev -> uat"
+serialPipeline:
+  stages:
+    - targetId: dev
+      profiles: [dev]
+    - targetId: uat
+      profiles: [uat]
+
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+description: "Project Neon DEV namespace"
+gke:
+  cluster: projects/project-neon-480615/locations/asia-southeast1-a/clusters/project-neon-gke
+executionConfigs:
+  - usages: [RENDER, DEPLOY]
+    defaultPool:
+      serviceAccount: cloud-deploy-sa@project-neon-480615.iam.gserviceaccount.com
+
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: uat
+description: "Project Neon UAT namespace (manual approval)"
+requireApproval: true
+gke:
+  cluster: projects/project-neon-480615/locations/asia-southeast1-a/clusters/project-neon-gke
+executionConfigs:
+  - usages: [RENDER, DEPLOY]
+    defaultPool:
+      serviceAccount: cloud-deploy-sa@project-neon-480615.iam.gserviceaccount.com

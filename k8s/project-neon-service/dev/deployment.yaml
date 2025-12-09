@@ -18,7 +18,7 @@ spec:
       serviceAccountName: project-neon-service-sa
       containers:
         - name: project-neon-service
-          image: project-neon-service
+          image: project-neon-service-image
           ports:
             - containerPort: 8080
           resources:

@@ -1,0 +1,25 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+metadata:
+  name: project-neon-service
+build:
+  artifacts:
+    - image: project-neon-service-image
+
+deploy:
+  kubectl:
+    manifests:
+      - k8s/project-neon-service/dev/*.yaml
+
+profiles:
+  - name: dev
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/project-neon-service/dev/*.yaml
+
+  - name: uat
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/project-neon-service/uat/*.yaml
