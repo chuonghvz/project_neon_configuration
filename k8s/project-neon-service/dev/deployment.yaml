@@ -43,3 +43,5 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: dev
+            - name: CONSTANT_APP_ENV
+              value: dev

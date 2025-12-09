@@ -43,3 +43,5 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: uat
+            - name: CONSTANT_APP_ENV
+              value: uat
