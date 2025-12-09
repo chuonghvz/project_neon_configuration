@@ -18,7 +18,7 @@ metadata:
   name: dev
 description: "Project Neon DEV namespace"
 gke:
-  cluster: projects/project-neon-480615/locations/asia-southeast1-a/clusters/project-neon-gke
+  cluster: projects/project-neon-480615/locations/asia-southeast1/clusters/project-neon-gke
 executionConfigs:
   - usages: [RENDER, DEPLOY]
     defaultPool:
@@ -33,7 +33,7 @@ metadata:
 description: "Project Neon UAT namespace (manual approval)"
 requireApproval: true
 gke:
-  cluster: projects/project-neon-480615/locations/asia-southeast1-a/clusters/project-neon-gke
+  cluster: projects/project-neon-480615/locations/asia-southeast1/clusters/project-neon-gke
 executionConfigs:
   - usages: [RENDER, DEPLOY]
     defaultPool:
