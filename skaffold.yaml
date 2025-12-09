@@ -2,24 +2,31 @@ apiVersion: skaffold/v4beta1
 kind: Config
 metadata:
   name: project-neon-service
+
+# Khai báo image mà Cloud Deploy sẽ map qua --images
 build:
   artifacts:
     - image: project-neon-service-image
 
+# Mặc định (không profile) có thể coi là dev hoặc bỏ trống,
+# mình cho luôn dev cho rõ.
+manifests:
+  rawYaml:
+    - k8s/project-neon-service/dev/deployment.yaml
+    - k8s/project-neon-service/dev/service.yaml
+
 deploy:
-  kubectl:
-    manifests:
-      - k8s/project-neon-service/dev/*.yaml
+  kubectl: {}  # v4: kubectl không còn field manifests, chỉ cấu hình flags/hook nếu cần
 
 profiles:
   - name: dev
-    deploy:
-      kubectl:
-        manifests:
-          - k8s/project-neon-service/dev/*.yaml
+    manifests:
+      rawYaml:
+        - k8s/project-neon-service/dev/deployment.yaml
+        - k8s/project-neon-service/dev/service.yaml
 
   - name: uat
-    deploy:
-      kubectl:
-        manifests:
-          - k8s/project-neon-service/uat/*.yaml
+    manifests:
+      rawYaml:
+        - k8s/project-neon-service/uat/deployment.yaml
+        - k8s/project-neon-service/uat/service.yaml
